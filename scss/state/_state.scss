@@ -1,0 +1,16 @@
+@use "../abstract" as *;
+
+.is-disabled,
+.is-disabled:hover,
+.is-disabled:focus-visible,
+.btn:disabled {
+    background-color: $color-border;
+    border-color: $color-disabled;
+    color: $color-text;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.is-hidden {
+    display: none !important;
+}

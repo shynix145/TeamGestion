@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Démo — Mini-framework CSS</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-header__title">Mini-framework CSS</h1>
+            <p class="site-header__subtitle">Une grille de 12 colonnes, des boutons et des cartes, écrits en SCSS.</p>
+            <nav class="site-header__nav">
+                <a href="#grille" class="btn btn--secondary btn--sm">Grille</a>
+                <a href="#boutons" class="btn btn--secondary btn--sm">Boutons</a>
+                <a href="#cartes" class="btn btn--secondary btn--sm">Cartes</a>
+                <a href="docs.html" class="btn btn--primary btn--sm">Documentation</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section class="section" id="grille">
+            <h2 class="section__title">Grille</h2>
+            <p>Douze colonnes séparées par une gouttière. Chaque ligne additionne 12.</p>
+
+            <div class="row">
+                <div class="col-8"><div class="demo-box">col-8</div></div>
+                <div class="col-4"><div class="demo-box">col-4</div></div>
+            </div>
+            <div class="row">
+                <div class="col-3"><div class="demo-box">col-3</div></div>
+                <div class="col-6"><div class="demo-box">col-6</div></div>
+                <div class="col-3"><div class="demo-box">col-3</div></div>
+            </div>
+            <div class="row">
+                <div class="col-4"><div class="demo-box">col-4</div></div>
+                <div class="col-4"><div class="demo-box">col-4</div></div>
+                <div class="col-4"><div class="demo-box">col-4</div></div>
+            </div>
+            <div class="row">
+                <div class="col-1"><div class="demo-box">1</div></div>
+                <div class="col-1"><div class="demo-box">1</div></div>
+                <div class="col-1"><div class="demo-box">1</div></div>
+                <div class="col-1"><div class="demo-box">1</div></div>
+                <div class="col-1"><div class="demo-box">1</div></div>
+                <div class="col-1"><div class="demo-box">1</div></div>
+                <div class="col-1"><div class="demo-box">1</div></div>
+                <div class="col-1"><div class="demo-box">1</div></div>
+                <div class="col-1"><div class="demo-box">1</div></div>
+                <div class="col-1"><div class="demo-box">1</div></div>
+                <div class="col-1"><div class="demo-box">1</div></div>
+                <div class="col-1"><div class="demo-box">1</div></div>
+            </div>
+        </section>
+
+        <section class="section" id="boutons">
+            <h2 class="section__title">Boutons</h2>
+            <p>Deux couleurs, trois tailles, sur un lien comme sur un bouton. Survolez-les ou parcourez-les au clavier.</p>
+
+            <div class="row">
+                <div class="col-6">
+                    <h3>Couleurs</h3>
+                    <div class="demo-buttons">
+                        <a href="#boutons" class="btn btn--primary">Primaire</a>
+                        <a href="#boutons" class="btn btn--secondary">Secondaire</a>
+                        <button type="button" class="btn btn--primary">Sur un &lt;button&gt;</button>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <h3>Tailles</h3>
+                    <div class="demo-buttons">
+                        <a href="#boutons" class="btn btn--primary btn--sm">Petit</a>
+                        <a href="#boutons" class="btn btn--primary">Normal</a>
+                        <a href="#boutons" class="btn btn--secondary btn--lg">Grand</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <h3>État désactivé</h3>
+                    <div class="demo-buttons">
+                        <button type="button" class="btn btn--primary" disabled>Bouton désactivé</button>
+                        <a class="btn btn--secondary is-disabled" aria-disabled="true">Lien désactivé</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="cartes">
+            <h2 class="section__title">Cartes</h2>
+            <p>Image, titre, texte et bouton sont tous optionnels.</p>
+
+            <div class="row">
+                <div class="col-4">
+                    <div class="card">
+                        <img class="card__img" src="img/montagne.svg" alt="Montagnes enneigées">
+                        <div class="card__body">
+                            <h3 class="card__title">Carte complète</h3>
+                            <p class="card__text">Une image, un titre, un texte et un bouton aligné en bas de la carte.</p>
+                            <a href="docs.html#cartes" class="btn btn--primary card__btn">Voir la doc</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card__body">
+                            <h3 class="card__title">Sans image</h3>
+                            <p class="card__text">Un titre, un texte et un bouton. La carte garde la même hauteur que ses voisines.</p>
+                            <a href="docs.html#cartes" class="btn btn--secondary btn--sm card__btn">Voir la doc</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="card">
+                        <img class="card__img" src="img/mer.svg" alt="Coucher de soleil sur la mer">
+                        <div class="card__body">
+                            <p class="card__text">Une image et un texte seulement, sans titre ni bouton.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="card">
+                        <img class="card__img" src="img/foret.svg" alt="Forêt de sapins">
+                        <div class="card__body">
+                            <h3 class="card__title">Image et titre</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card__body">
+                            <h3 class="card__title">Titre et bouton</h3>
+                            <a href="docs.html#cartes" class="btn btn--primary btn--lg card__btn">Grand bouton</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">Mini-framework CSS — SCSS · SMACSS/OOCSS · BEM</div>
+    </footer>
+
+</body>
+</html>

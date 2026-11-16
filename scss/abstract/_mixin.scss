@@ -1,0 +1,53 @@
+@use "sass:math";
+@use "sass:color";
+@use "variable" as *;
+
+// Une colonne qui occupe $size colonnes sur $columns.
+@mixin make-col($size, $columns: $grid-columns) {
+  padding: 0 ($grid-gutter * 0.5);
+  flex: 0 0 math.percentage(math.div($size, $columns));
+  max-width: math.percentage(math.div($size, $columns));
+}
+
+// Génère .col-1 à .col-12 avec une boucle.
+@mixin make-grid($columns: $grid-columns) {
+  @for $i from 1 through $columns {
+    .col-#{$i} {
+      @include make-col($i, $columns);
+    }
+  }
+}
+
+// Applique le bloc reçu (@content) au survol et au focus clavier.
+@mixin hover-focus {
+  &:hover,
+  &:focus-visible {
+    @content;
+  }
+}
+
+@mixin button-variant($background, $color: $color-white, $background-hover: null) {
+  @if $background-hover == null {
+    $background-hover: color.scale($background, $lightness: $btn-hover-darken);
+  }
+
+  background-color: $background;
+  border-color: $background;
+  color: $color;
+
+  @include hover-focus {
+    background-color: $background-hover;
+    border-color: $background-hover;
+  }
+}
+
+@mixin button-size($padding-y, $padding-x, $font-size) {
+  padding: $padding-y $padding-x;
+  font-size: $font-size;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

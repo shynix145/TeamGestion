@@ -1,0 +1,17 @@
+@use "../abstract" as *;
+
+.container {
+    width: 100%;
+    max-width: $container-max-width;
+    margin: 0 auto;
+    padding: 0 $spacing-md;
+}
+
+// Les marges négatives compensent la gouttière des colonnes.
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 ($grid-gutter * -0.5) $spacing-lg;
+}
+
+@include make-grid;

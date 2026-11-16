@@ -1,0 +1,60 @@
+@use "../abstract" as *;
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: $font-family-base;
+    font-size: $font-size-base;
+    line-height: $line-height-base;
+    color: $color-text;
+    background-color: $color-light;
+}
+
+h1,
+h2,
+h3 {
+    margin: 0 0 $spacing-md;
+    line-height: $line-height-title;
+    color: $color-dark;
+}
+
+h1 {
+    font-size: $font-size-h1;
+}
+
+h2 {
+    font-size: $font-size-h2;
+}
+
+h3 {
+    font-size: $font-size-h3;
+}
+
+p {
+    margin: 0 0 $spacing-md;
+}
+
+a {
+    color: $color-primary;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+code,
+pre {
+    font-family: $font-family-mono;
+    font-size: $font-size-small;
+}

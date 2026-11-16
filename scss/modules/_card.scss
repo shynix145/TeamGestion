@@ -1,0 +1,39 @@
+@use "../abstract" as *;
+
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    background-color: $color-white;
+    border: $border-width solid $color-border;
+    border-radius: $border-radius-lg;
+    box-shadow: $shadow;
+
+    &__img {
+        width: 100%;
+        height: $card-img-height;
+        object-fit: cover;
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        padding: $card-padding;
+    }
+
+    &__title {
+        margin-bottom: $spacing-sm;
+        font-size: $font-size-large;
+    }
+
+    &__text {
+        color: $color-text-muted;
+    }
+
+    &__btn {
+        align-self: flex-start;
+        margin-top: auto;
+    }
+}

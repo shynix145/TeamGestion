@@ -1,0 +1,31 @@
+@use "../abstract" as *;
+
+.btn {
+    display: inline-block;
+    @include button-size($btn-padding-y, $btn-padding-x, $font-size-base);
+    font-family: inherit;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-title;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: $border-width solid transparent;
+    border-radius: $border-radius;
+    transition: background-color $transition-base, border-color $transition-base;
+
+    &--primary {
+        @include button-variant($color-primary, $color-white, $color-primary-dark);
+    }
+
+    &--secondary {
+        @include button-variant($color-secondary, $color-dark, $color-secondary-dark);
+    }
+
+    &--sm {
+        @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $font-size-small);
+    }
+
+    &--lg {
+        @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $font-size-large);
+    }
+}

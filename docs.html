@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Documentation — Mini-framework CSS</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-header__title">Documentation</h1>
+            <p class="site-header__subtitle">Structure HTML à utiliser pour chaque composant du mini-framework.</p>
+            <nav class="site-header__nav">
+                <a href="#installation" class="btn btn--secondary btn--sm">Installation</a>
+                <a href="#grille" class="btn btn--secondary btn--sm">Grille</a>
+                <a href="#boutons" class="btn btn--secondary btn--sm">Boutons</a>
+                <a href="#cartes" class="btn btn--secondary btn--sm">Cartes</a>
+                <a href="#variables" class="btn btn--secondary btn--sm">Variables</a>
+                <a href="index.html" class="btn btn--primary btn--sm">Démo</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section class="section" id="installation">
+            <h2 class="section__title">Installation</h2>
+            <p>Installer les dépendances puis compiler le SCSS :</p>
+<pre class="doc-code">npm install
+npm run sass:build   # compile une fois
+npm run sass:watch   # recompile à chaque modification
+
+# ou directement, si sass est installé :
+sass scss/main.scss css/main.css</pre>
+            <p>Puis lier la feuille de style compilée dans votre page :</p>
+<pre class="doc-code">&lt;link rel="stylesheet" href="css/main.css"&gt;</pre>
+
+            <h3>Architecture (SMACSS)</h3>
+            <table class="doc-table">
+                <tr><th>Dossier</th><th>Rôle</th></tr>
+                <tr><td><code>abstract/</code></td><td>Variables et mixins. Ne génère aucun CSS.</td></tr>
+                <tr><td><code>base/</code></td><td>Reset et styles des balises HTML (aucune classe).</td></tr>
+                <tr><td><code>layout/</code></td><td>Conteneur et grille de 12 colonnes.</td></tr>
+                <tr><td><code>modules/</code></td><td>Composants réutilisables : bouton, carte.</td></tr>
+                <tr><td><code>state/</code></td><td>États : <code>.is-disabled</code>, <code>.is-hidden</code>.</td></tr>
+                <tr><td><code>theme/</code></td><td>Habillage des pages de démo et de documentation.</td></tr>
+            </table>
+            <p>Le nommage suit la notation <strong>BEM</strong> : <code>.bloc</code>, <code>.bloc__element</code>, <code>.bloc--modificateur</code>.</p>
+        </section>
+
+        <section class="section" id="grille">
+            <h2 class="section__title">Grille</h2>
+            <p>
+                La grille repose sur flexbox et 12 colonnes. Placez des colonnes <code>.col-1</code> à <code>.col-12</code>
+                dans une <code>.row</code>, elle-même dans un <code>.container</code>. La somme des colonnes d'une ligne doit faire 12.
+                Les colonnes sont séparées par une gouttière de <code>$grid-gutter</code>.
+                Les classes sont générées par le mixin <code>make-grid()</code>, qui appelle <code>make-col()</code> dans une boucle <code>@for</code>.
+            </p>
+
+            <div class="doc-example">
+                <div class="row">
+                    <div class="col-8"><div class="demo-box">col-8</div></div>
+                    <div class="col-4"><div class="demo-box">col-4</div></div>
+                </div>
+                <div class="row">
+                    <div class="col-3"><div class="demo-box">col-3</div></div>
+                    <div class="col-6"><div class="demo-box">col-6</div></div>
+                    <div class="col-3"><div class="demo-box">col-3</div></div>
+                </div>
+            </div>
+<pre class="doc-code">&lt;div class="container"&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="col-8"&gt;col-8&lt;/div&gt;
+    &lt;div class="col-4"&gt;col-4&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="col-3"&gt;col-3&lt;/div&gt;
+    &lt;div class="col-6"&gt;col-6&lt;/div&gt;
+    &lt;div class="col-3"&gt;col-3&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+            <table class="doc-table">
+                <tr><th>Classe</th><th>Effet</th></tr>
+                <tr><td><code>.container</code></td><td>Centre le contenu, largeur max <code>$container-max-width</code>.</td></tr>
+                <tr><td><code>.row</code></td><td>Ligne flex qui contient les colonnes et compense leur gouttière.</td></tr>
+                <tr><td><code>.col-1</code> … <code>.col-12</code></td><td>Occupe N colonnes sur 12, avec une demi-gouttière de chaque côté.</td></tr>
+            </table>
+        </section>
+
+        <section class="section" id="boutons">
+            <h2 class="section__title">Boutons</h2>
+            <p>
+                Ajoutez toujours la classe de base <code>.btn</code>, puis un modificateur de couleur
+                et éventuellement un modificateur de taille. Fonctionne sur <code>&lt;a&gt;</code> et <code>&lt;button&gt;</code>.
+                Au survol et au focus clavier, le bouton s'assombrit pour signaler qu'il est cliquable.
+            </p>
+
+            <div class="doc-example demo-buttons">
+                <a href="#" class="btn btn--primary">Primaire</a>
+                <a href="#" class="btn btn--secondary">Secondaire</a>
+                <a href="#" class="btn btn--primary btn--sm">Petit</a>
+                <a href="#" class="btn btn--primary btn--lg">Grand</a>
+                <button class="btn btn--primary" disabled>Désactivé</button>
+            </div>
+<pre class="doc-code">&lt;a href="#" class="btn btn--primary"&gt;Primaire&lt;/a&gt;
+&lt;a href="#" class="btn btn--secondary"&gt;Secondaire&lt;/a&gt;
+&lt;a href="#" class="btn btn--primary btn--sm"&gt;Petit&lt;/a&gt;
+&lt;a href="#" class="btn btn--primary btn--lg"&gt;Grand&lt;/a&gt;
+&lt;button class="btn btn--primary" disabled&gt;Désactivé&lt;/button&gt;</pre>
+
+            <table class="doc-table">
+                <tr><th>Classe</th><th>Type</th><th>Effet</th></tr>
+                <tr><td><code>.btn</code></td><td>Bloc</td><td>Structure commune (obligatoire).</td></tr>
+                <tr><td><code>.btn--primary</code></td><td>Modificateur</td><td>Bouton principal (couleur <code>$color-primary</code>).</td></tr>
+                <tr><td><code>.btn--secondary</code></td><td>Modificateur</td><td>Bouton secondaire (couleur <code>$color-secondary</code>).</td></tr>
+                <tr><td><code>.btn--sm</code></td><td>Modificateur</td><td>Petit bouton.</td></tr>
+                <tr><td><code>.btn--lg</code></td><td>Modificateur</td><td>Grand bouton.</td></tr>
+                <tr><td><code>.is-disabled</code> / <code>disabled</code></td><td>État</td><td>Bouton désactivé.</td></tr>
+            </table>
+        </section>
+
+        <section class="section" id="cartes">
+            <h2 class="section__title">Cartes</h2>
+            <p>
+                Une carte <code>.card</code> peut contenir tout ou partie des éléments suivants :
+                une image, un titre, un texte et un bouton. Les éléments absents peuvent simplement être retirés du HTML.
+            </p>
+
+            <div class="doc-example">
+                <div class="row">
+                    <div class="col-4">
+                        <div class="card">
+                            <img class="card__img" src="img/montagne.svg" alt="Montagne">
+                            <div class="card__body">
+                                <h3 class="card__title">Carte complète</h3>
+                                <p class="card__text">Image, titre, texte et bouton.</p>
+                                <a href="#" class="btn btn--primary card__btn">Bouton</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="card">
+                            <div class="card__body">
+                                <h3 class="card__title">Sans image</h3>
+                                <p class="card__text">Titre, texte et bouton.</p>
+                                <a href="#" class="btn btn--secondary btn--sm card__btn">Bouton</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="card">
+                            <img class="card__img" src="img/mer.svg" alt="Mer">
+                            <div class="card__body">
+                                <p class="card__text">Image et texte seulement.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<pre class="doc-code">&lt;div class="card"&gt;
+  &lt;img class="card__img" src="image.jpg" alt="Description"&gt;   &lt;!-- optionnel --&gt;
+  &lt;div class="card__body"&gt;
+    &lt;h3 class="card__title"&gt;Titre&lt;/h3&gt;                  &lt;!-- optionnel --&gt;
+    &lt;p class="card__text"&gt;Texte de la carte.&lt;/p&gt;          &lt;!-- optionnel --&gt;
+    &lt;a href="#" class="btn btn--primary card__btn"&gt;Bouton&lt;/a&gt; &lt;!-- optionnel --&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+            <table class="doc-table">
+                <tr><th>Classe</th><th>Type</th><th>Effet</th></tr>
+                <tr><td><code>.card</code></td><td>Bloc</td><td>Conteneur de la carte.</td></tr>
+                <tr><td><code>.card__img</code></td><td>Élément</td><td>Image en haut, hauteur <code>$card-img-height</code>.</td></tr>
+                <tr><td><code>.card__body</code></td><td>Élément</td><td>Zone de contenu avec marges internes.</td></tr>
+                <tr><td><code>.card__title</code></td><td>Élément</td><td>Titre de la carte.</td></tr>
+                <tr><td><code>.card__text</code></td><td>Élément</td><td>Texte de la carte.</td></tr>
+                <tr><td><code>.card__btn</code></td><td>Élément</td><td>À ajouter sur un <code>.btn</code> : le place en bas de la carte.</td></tr>
+            </table>
+        </section>
+
+        <section class="section" id="variables">
+            <h2 class="section__title">Variables et mixins</h2>
+            <p>Toutes les valeurs sont définies dans <code>scss/abstract/_variable.scss</code>. Modifiez-les pour personnaliser le framework.</p>
+            <table class="doc-table">
+                <tr><th>Variable</th><th>Valeur</th></tr>
+                <tr><td><code>$color-primary</code></td><td>#4f46e5</td></tr>
+                <tr><td><code>$color-secondary</code></td><td>#f59e0b</td></tr>
+                <tr><td><code>$color-primary-dark</code>, <code>$color-secondary-dark</code></td><td>Calculées à partir des deux couleurs (<code>$btn-hover-darken</code> : -15 %).</td></tr>
+                <tr><td><code>$grid-columns</code></td><td>12</td></tr>
+                <tr><td><code>$grid-gutter</code></td><td>1.5rem</td></tr>
+                <tr><td><code>$container-max-width</code></td><td>1140px</td></tr>
+                <tr><td><code>$spacing-xs</code> … <code>$spacing-xl</code></td><td>0.25rem … 3rem</td></tr>
+                <tr><td><code>$border-radius</code></td><td>8px</td></tr>
+            </table>
+
+            <h3>Mixins disponibles (<code>scss/abstract/_mixin.scss</code>)</h3>
+            <table class="doc-table">
+                <tr><th>Mixin</th><th>Usage</th></tr>
+                <tr><td><code>make-grid($columns)</code></td><td>Génère les classes <code>.col-1</code> à <code>.col-12</code> avec une boucle <code>@for</code>.</td></tr>
+                <tr><td><code>make-col($size, $columns)</code></td><td>Donne à un élément la largeur de <code>$size</code> colonnes et sa gouttière.</td></tr>
+                <tr><td><code>hover-focus</code></td><td>Applique le bloc reçu (<code>@content</code>) au survol et au focus clavier.</td></tr>
+                <tr><td><code>button-variant($bg, $color, $bg-hover)</code></td><td>Crée une variante de couleur de bouton, avec son effet au survol. <code>$bg-hover</code> est optionnel.</td></tr>
+                <tr><td><code>button-size($py, $px, $font-size)</code></td><td>Crée une variante de taille de bouton.</td></tr>
+                <tr><td><code>flex-center</code></td><td>Centre le contenu avec flexbox.</td></tr>
+            </table>
+<pre class="doc-code">// Exemple : créer un bouton "danger"
+.btn--danger {
+  @include button-variant(#dc2626);
+}
+
+// Exemple : souligner un lien au survol et au focus
+.lien {
+  @include hover-focus {
+    text-decoration: underline;
+  }
+}</pre>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">Mini-framework CSS — SCSS · SMACSS/OOCSS · BEM</div>
+    </footer>
+
+</body>
+</html>
